@@ -15,7 +15,7 @@ const (
 
 
 
-func main() {
+func main() {//入口 调用service
 	port := os.Getenv("PORT")
 	if len(port) == 0 {
 		port = PORT

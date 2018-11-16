@@ -6,7 +6,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/unrolled/render"
 )
-func NewServer() *negroni.Negroni {
+func NewServer() *negroni.Negroni {//copy自上课案例
 	formatter := render.New()
 	n := negroni.Classic()
 	mx := mux.NewRouter()
@@ -23,18 +23,11 @@ func initRoutes(mx *mux.Router, formatter *render.Render) {
 			webRoot = root
 		}
 	}
-
-
-
-	mx.HandleFunc("/unknown", errorNotice).Methods("GET")
-
-	//mx.HandleFunc("/getInfo", getInfo).Methods("GET")
-
+	mx.HandleFunc("/unknown", unknownPage).Methods("GET")
 	mx.HandleFunc("/", indexPage).Methods("GET")
 	mx.HandleFunc("/index", indexPage).Methods("GET")
 	mx.HandleFunc("/calculator", calculatorPage).Methods("GET")
 	mx.HandleFunc("/", submit).Methods("POST")
-
-	mx.PathPrefix("/static").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(webRoot+"/assets/"))))
+	mx.PathPrefix("/file").Handler(http.StripPrefix("/file/", http.FileServer(http.Dir(webRoot+"/assets/"))))
 
 }

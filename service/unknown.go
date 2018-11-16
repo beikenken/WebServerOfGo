@@ -5,6 +5,6 @@ import (
 )
 
 // Error Page
-func errorNotice(reqw http.ResponseWriter, req *http.Request) {
+func unknownPage(reqw http.ResponseWriter, req *http.Request) {
 	http.Error(reqw, "504 Not Implemented!", 504)
 }
